@@ -1,5 +1,16 @@
 import Config
 
+# Configure the event store database
+config :conduit, Conduit.EventStore,
+  serializer: EventStore.JsonbSerializer,
+  types: EventStore.PostgresTypes,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "conduit_eventstore_test",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: 10
+
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used

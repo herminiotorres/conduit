@@ -12,6 +12,7 @@ defmodule Conduit.Application do
       ConduitWeb.Telemetry,
       # Start the Ecto repository
       Conduit.Repo,
+      Conduit.EventStore,
       # Start the PubSub system
       {Phoenix.PubSub, name: Conduit.PubSub},
       # Start Finch

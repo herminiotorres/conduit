@@ -1,5 +1,15 @@
 import Config
 
+# Configure the event store database
+config :conduit, Conduit.EventStore,
+  serializer: EventStore.JsonbSerializer,
+  types: EventStore.PostgresTypes,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "conduit_eventstore_dev",
+  pool_size: 10
+
 # Configure your database
 config :conduit, Conduit.Repo,
   username: "postgres",
