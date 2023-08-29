@@ -5,6 +5,7 @@ defmodule Conduit.Accounts do
 
   import Ecto.Query, warn: false
 
+  # alias Ecto.Migration.Reference
   alias Conduit.Repo
   alias Conduit.Accounts.Projections.User
 
@@ -101,4 +102,20 @@ defmodule Conduit.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  alias Conduit.Accounts.Commands.RegisterUser
+  alias Conduit.Router
+
+  @doc """
+  Register a new user.
+  """
+  def register_user(attrs \\ %{}) do
+    attrs
+    |> assign_uuid(:user_uuid)
+    |> RegisterUser.new()
+    |> Router.dispatch()
+  end
+
+  # generate a unique identity
+  defp assign_uuid(attrs, identify), do: Map.put(attrs, identify, Ecto.UUID.generate())
 end

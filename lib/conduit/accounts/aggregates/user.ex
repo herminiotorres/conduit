@@ -1,14 +1,15 @@
 defmodule Conduit.Accounts.Aggregates.User do
   defstruct [:uuid, :username, :email, :hashed_password]
 
-  alias Conduit.Accounts.Commands, as: C
-  alias Conduit.Accounts.Events, as: E
+  alias __MODULE__
+  alias Conduit.Accounts.Commands.RegisterUser
+  alias Conduit.Accounts.Events.UserRegistered
 
   @doc """
   Register a new user
   """
-  def execute(%__MODULE__{uuid: nil}, %C.RegisterUser{} = register) do
-    %E.UserRegistered{
+  def execute(%User{uuid: nil}, %RegisterUser{} = register) do
+    %UserRegistered{
       user_uuid: register.user_uuid,
       username: register.username,
       email: register.email,
@@ -18,8 +19,8 @@ defmodule Conduit.Accounts.Aggregates.User do
 
   # state mutators
 
-  def apply(%__MODULE__{} = user, %E.UserRegistered{} = registered) do
-    %__MODULE__{
+  def apply(%User{} = user, %UserRegistered{} = registered) do
+    %User{
       user
       | uuid: registered.user_uuid,
         username: registered.username,

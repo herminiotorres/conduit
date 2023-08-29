@@ -24,6 +24,8 @@ defmodule ConduitWeb.ConnCase do
 
       use ConduitWeb, :verified_routes
 
+      import Conduit.Factory
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest

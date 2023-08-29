@@ -41,7 +41,17 @@ config :commanded,
   event_store_adapter: Commanded.EventStore.Adapters.EventStore
 
 config :conduit,
-  event_stores: [Conduit.EventStore],
+  event_stores: [Conduit.EventStore]
+
+config :conduit, Conduit.Commanded,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: Conduit.EventStore
+  ],
+  registry: :local,
+  pub_sub: :local
+
+config :conduit, Conduit.EventStore,
   column_data_type: "jsonb",
   serializer: EventStore.JsonbSerializer,
   types: EventStore.PostgresTypes

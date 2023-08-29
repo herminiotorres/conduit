@@ -10,9 +10,10 @@ defmodule Conduit.Application do
     children = [
       # Start the Telemetry supervisor
       ConduitWeb.Telemetry,
+      # Commanded application
+      Conduit.Commanded,
       # Start the Ecto repository
       Conduit.Repo,
-      Conduit.EventStore,
       # Start the PubSub system
       {Phoenix.PubSub, name: Conduit.PubSub},
       # Start Finch

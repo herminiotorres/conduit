@@ -1,4 +1,5 @@
 defmodule Conduit.Accounts.Commands.RegisterUser do
+  @enforce_keys [:user_uuid]
   defstruct [
     :user_uuid,
     :username,
