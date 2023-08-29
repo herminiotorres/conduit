@@ -1,4 +1,4 @@
-defmodule Conduit.Accounts.User do
+defmodule Conduit.Accounts.Projections.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -13,7 +13,7 @@ defmodule Conduit.Accounts.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(%__MODULE__{} = user, attrs) do
     user
     |> cast(attrs, [:username, :email, :hashed_password, :bio, :image])
     |> validate_required([:username, :email, :hashed_password, :bio, :image])

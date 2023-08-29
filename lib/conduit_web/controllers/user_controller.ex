@@ -2,7 +2,7 @@ defmodule ConduitWeb.UserController do
   use ConduitWeb, :controller
 
   alias Conduit.Accounts
-  alias Conduit.Accounts.User
+  alias Conduit.Accounts.Projections.User
 
   action_fallback ConduitWeb.FallbackController
 

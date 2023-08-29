@@ -1,5 +1,5 @@
 defmodule ConduitWeb.UserJSON do
-  alias Conduit.Accounts.User
+  alias Conduit.Accounts.Projections.User
 
   @doc """
   Renders a list of users.
