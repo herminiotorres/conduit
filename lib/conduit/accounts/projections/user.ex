@@ -2,6 +2,7 @@ defmodule Conduit.Accounts.Projections.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:uuid, :binary_id, autogenerate: false}
   schema "accounts_users" do
     field :username, :string
     field :email, :string
@@ -17,5 +18,7 @@ defmodule Conduit.Accounts.Projections.User do
     user
     |> cast(attrs, [:username, :email, :hashed_password, :bio, :image])
     |> validate_required([:username, :email, :hashed_password, :bio, :image])
+    |> unique_constraint(:username)
+    |> unique_constraint(:email)
   end
 end

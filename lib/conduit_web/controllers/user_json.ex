@@ -17,7 +17,7 @@ defmodule ConduitWeb.UserJSON do
 
   defp data(%User{} = user) do
     %{
-      id: user.id,
+      id: user.uuid,
       username: user.username,
       email: user.email,
       hashed_password: user.hashed_password,
