@@ -7,6 +7,9 @@ defmodule ConduitWeb.Router do
 
   scope "/api", ConduitWeb do
     pipe_through :api
+
+    # resources "/users", UserController, except: [:new, :edit]
+    post "/users", UserController, :create
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
