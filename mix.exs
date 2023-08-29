@@ -46,7 +46,8 @@ defmodule Conduit.MixProject do
       {:commanded, "~> 1.4"},
       {:eventstore, "~> 1.4"},
       {:commanded_eventstore_adapter, "~> 1.4"},
-      {:ex_machina, "~> 2.7", only: :test}
+      {:ex_machina, "~> 2.7", only: :test},
+      {:exconstructor, "~> 1.2.8"}
     ]
   end
 
