@@ -21,7 +21,13 @@ defmodule Conduit.AccountsTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{image: "some image", username: "some username", email: "some email", hashed_password: "some hashed_password", bio: "some bio"}
+      valid_attrs = %{
+        image: "some image",
+        username: "some username",
+        email: "some email",
+        hashed_password: "some hashed_password",
+        bio: "some bio"
+      }
 
       assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
       assert user.image == "some image"
@@ -37,7 +43,14 @@ defmodule Conduit.AccountsTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{image: "some updated image", username: "some updated username", email: "some updated email", hashed_password: "some updated hashed_password", bio: "some updated bio"}
+
+      update_attrs = %{
+        image: "some updated image",
+        username: "some updated username",
+        email: "some updated email",
+        hashed_password: "some updated hashed_password",
+        bio: "some updated bio"
+      }
 
       assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
       assert user.image == "some updated image"
