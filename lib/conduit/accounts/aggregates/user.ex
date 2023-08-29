@@ -1,4 +1,6 @@
 defmodule Conduit.Accounts.Aggregates.User do
+  @derive Jason.Encoder
+
   defstruct [:uuid, :username, :email, :hashed_password]
 
   alias __MODULE__
@@ -8,24 +10,24 @@ defmodule Conduit.Accounts.Aggregates.User do
   @doc """
   Register a new user
   """
-  def execute(%User{uuid: nil}, %RegisterUser{} = register) do
+  def execute(%User{uuid: nil}, %RegisterUser{} = command) do
     %UserRegistered{
-      user_uuid: register.user_uuid,
-      username: register.username,
-      email: register.email,
-      hashed_password: register.hashed_password
+      user_uuid: command.user_uuid,
+      username: command.username,
+      email: command.email,
+      hashed_password: command.hashed_password
     }
   end
 
   # state mutators
 
-  def apply(%User{} = user, %UserRegistered{} = registered) do
+  def apply(%User{} = user, %UserRegistered{} = event) do
     %User{
       user
-      | uuid: registered.user_uuid,
-        username: registered.username,
-        email: registered.email,
-        hashed_password: registered.hashed_password
+      | uuid: event.user_uuid,
+        username: event.username,
+        email: event.email,
+        hashed_password: event.hashed_password
     }
   end
 end

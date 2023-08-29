@@ -9,4 +9,10 @@ defmodule Conduit.Accounts.Commands.RegisterUser do
   ]
 
   use ExConstructor
+
+  alias __MODULE__
+
+  def assign_uuid(%RegisterUser{} = register_user, user_uuid) do
+    %RegisterUser{register_user | user_uuid: user_uuid}
+  end
 end

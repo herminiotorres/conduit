@@ -6,8 +6,5 @@ defmodule Conduit.Router do
 
   identify(User, by: :user_uuid)
 
-  dispatch(
-    [RegisterUser],
-    to: User
-  )
+  dispatch(RegisterUser, to: User)
 end

@@ -104,18 +104,23 @@ defmodule Conduit.Accounts do
   end
 
   alias Conduit.Accounts.Commands.RegisterUser
-  alias Conduit.Router
+  alias Conduit.App
 
   @doc """
   Register a new user.
   """
   def register_user(attrs \\ %{}) do
-    attrs
-    |> assign_uuid(:user_uuid)
-    |> RegisterUser.new()
-    |> Router.dispatch()
-  end
+    user_uuid = Ecto.UUID.generate()
 
-  # generate a unique identity
-  defp assign_uuid(attrs, identify), do: Map.put(attrs, identify, Ecto.UUID.generate())
+    command =
+      attrs
+      |> RegisterUser.new()
+      |> RegisterUser.assign_uuid(user_uuid)
+
+    with :ok <- App.dispatch(command, consistency: :strong) do
+      {:ok, get_user!(user_uuid)}
+    else
+      reply -> reply
+    end
+  end
 end

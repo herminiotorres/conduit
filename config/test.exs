@@ -8,7 +8,6 @@ config :conduit, Conduit.EventStore,
   password: "postgres",
   hostname: "localhost",
   database: "conduit_eventstore_test",
-  pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # Configure your database

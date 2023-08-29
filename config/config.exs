@@ -8,7 +8,8 @@
 import Config
 
 config :conduit,
-  ecto_repos: [Conduit.Repo]
+  ecto_repos: [Conduit.Repo],
+  event_stores: [Conduit.EventStore]
 
 # Configures the endpoint
 config :conduit, ConduitWeb.Endpoint,
@@ -40,21 +41,17 @@ config :phoenix, :json_library, Jason
 config :commanded,
   event_store_adapter: Commanded.EventStore.Adapters.EventStore
 
-config :conduit,
-  event_stores: [Conduit.EventStore]
-
-config :conduit, Conduit.Commanded,
+config :conduit, Conduit.App,
   event_store: [
     adapter: Commanded.EventStore.Adapters.EventStore,
     event_store: Conduit.EventStore
   ],
-  registry: :local,
-  pub_sub: :local
+  pubsub: :local,
+  registry: :local
 
 config :conduit, Conduit.EventStore,
   column_data_type: "jsonb",
-  serializer: EventStore.JsonbSerializer,
-  types: EventStore.PostgresTypes
+  serializer: Commanded.Serialization.JsonSerializer
 
 config :commanded_ecto_projections, repo: Conduit.Repo
 
