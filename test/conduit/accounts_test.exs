@@ -10,7 +10,7 @@ defmodule Conduit.AccountsTest do
   end
 
   describe "users" do
-    alias Conduit.Accounts.User
+    alias Conduit.Accounts.Projections.User
 
     @invalid_attrs %{image: nil, username: nil, email: nil, hashed_password: nil, bio: nil}
 

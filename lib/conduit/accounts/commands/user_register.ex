@@ -4,7 +4,7 @@ defmodule Conduit.Accounts.Commands.RegisterUser do
     :username,
     :email,
     :password,
-    :hashed_password,
+    :hashed_password
   ]
 
   use ExConstructor
